@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: '20'
 
+      - name: List files in root
+        run: ls -R
+      - name: List files in client directory
+        run: ls -R client
       - name: Install dependencies
         run: npm install
         working-directory: client
