@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          path: client
+          path: .
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -22,17 +22,19 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: client
 
 
       - name: Build project
         run: npm run build
+        working-directory: client
 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./client/dist
           publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
